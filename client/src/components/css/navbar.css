@@ -1,0 +1,35 @@
+.navbar-wrapper {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 40px;
+}
+
+.navbar-user {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.navbar-btn {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0px 20px;
+    font-family: 'Chakra Petch', sans-serif;
+    border-radius: 25px;
+}
+
+.user-avatar {
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+}
