@@ -5,11 +5,17 @@ Developed a virtual travel diary app for avid travel enthusiasts to document all
 ## 💻 Built With
 
 ➡ HTML
+
 ➡ CSS
+
 ➡ ReactJS
+
 ➡ NodeJS
+
 ➡ ExpressJS
+
 ➡ MongoDB
+
 ➡ React-Markdown
 
 ## 💻 Working
