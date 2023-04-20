@@ -12,9 +12,13 @@ const noteSchema = new Schema({
     content : {
         type : String
     },
+    color : {
+        type : String,
+    },
     user : {
         type : String
     }
+    
 }, {timestamps: true})
 
 const Note = mongoose.model("Note", noteSchema)

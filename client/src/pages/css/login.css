@@ -76,7 +76,7 @@ textarea {
     resize:vertical;
   }
 
-  .login-btn {
+  .login__btn {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     width: 100%;
     background:#f7797d;
@@ -92,6 +92,6 @@ textarea {
     font-weight:700;
   }
 
-  .login-btn:hover {
+  .login__btn:hover {
     background:#dd363c;
   }

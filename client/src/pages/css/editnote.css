@@ -1,4 +1,4 @@
-.editnote-form {
+.editnote__form {
     display: flex;
     flex-flow: column;
     justify-content: space-around;
@@ -6,7 +6,7 @@
     padding: 50px;
 }
 
-.editnote-form input {
+.editnote__input {
     height: 80px;
     width: 100%;
     font-size: 22px;
@@ -17,12 +17,12 @@
     border-bottom:6px solid #000000;
 }
 
-.editnote-form input:focus {
+.editnote__input:focus {
     background-color: honeydew;
     border: 6px solid #000000;
 }
 
-.editnote-form textarea {
+.editnote__textarea {
     width: 100%;
     font-size: 18px;
     font-family: 'Chakra Petch', sans-serif;
@@ -36,12 +36,12 @@
     border-bottom:6px solid #000000;
 }
 
-.editnote-form textarea:focus {
+.editnote__textarea:focus {
     background-color: honeydew;
     border: 6px solid #000000;
 }
 
-.edit-note-btn {
+.editnote__btn {
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
   letter-spacing: 2px;
@@ -60,7 +60,7 @@
   touch-action: manipulation;
 }
 
-.edit-note-btn:active {
+.editnote__btn:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
   left: 5px;

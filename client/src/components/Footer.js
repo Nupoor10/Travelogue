@@ -1,6 +1,5 @@
 import React from 'react'
 import './css/footer.css'
-import { Link } from 'react-router-dom';
 import { AiFillInstagram, AiFillYoutube, AiFillTwitterCircle, AiFillLinkedin } from "react-icons/ai";
 
 function Footer() {
@@ -15,10 +14,10 @@ function Footer() {
             </p>
         </div>
         <div className='footer-links'>
-          <Link className='nav-link' to='www.youtube.com'><AiFillInstagram /></Link>
-          <Link className='nav-link' to='www.youtube.com'><AiFillLinkedin /></Link>
-          <Link className='nav-link' to='www.youtube.com'><AiFillTwitterCircle /></Link>
-          <Link className='nav-link' to='www.youtube.com'><AiFillYoutube /></Link>
+          <a className='nav-link' target='_blank' rel='noreferrer' href='https://www.instagram.com/'><AiFillInstagram /></a>
+          <a className='nav-link' target='_blank' rel='noreferrer' href='https://in.linkedin.com/'><AiFillLinkedin /></a>
+          <a className='nav-link' target='_blank' rel='noreferrer' href='https://twitter.com/'><AiFillTwitterCircle /></a>
+          <a className='nav-link' target='_blank' rel='noreferrer' href='https://www.youtube.com/'><AiFillYoutube /></a>
         </div>
       </div>
       <hr />

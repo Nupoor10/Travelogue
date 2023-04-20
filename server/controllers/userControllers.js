@@ -3,86 +3,79 @@ const User = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
+const generateToken = require('../utilities/generateToken')
 
 //userRegistration
-const registerUser = (req,res) => {
-    bcrypt.hash(req.body.password, 10).then(
-        (hashedPassword) => {
-            const user =  new User(
-                {
-                    name : req.body.name,
-                    email : req.body.email,
-                    password : hashedPassword,
-                }
-            )
-        
-            user.save().then(
-                result => {
-                    res.status(201).send({
-                        message : "User created sucessfully",
-                        result
-                    })
-                }
-            ).catch(
-                err => {
-                    res.status(500).send({
-                        message : "User was not created",
-                        err
-                    })
-                }
-            )
-        }).catch(
-            (err) => { 
-                res.status(500).send({
-                    message : "Password field is required",
-                    err
+const registerUser = async (req,res) => {
+    try {
+        const { name, email, password} = req.body;
+
+        const existingUser = await User.findOne({email : email})
+
+        if(existingUser) {
+            res.status(404).send({
+                message : "User Already Exists"
             })
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10)
+    
+        const user = await new User(
+            {
+                name : name,
+                email : email,
+                password : hashedPassword,
+            }
+        )
+
+        await user.save()
+
+        if(user) {
+            res.status(201).send({
+                message : "User created sucessfully",
+                user 
+            })
+        } 
+    }
+    catch(error) {
+        res.status(500).send({
+            message : "User Registration Unsuccessful",
+            error: error.message
         })
+    }
 }
 
 //userLogin
-const loginUser = (req,res) => {
-    User.findOne({email : req.body.email}).then(
-        user => {
-            bcrypt.compare(req.body.password, user.password).then(
-                result => {
-                    if(!result) {
-                        res.status(404).send({
-                            message : "Password is Incorrect",
-                            err
-                        })
-                    }
-                    else if(result) {
-                        const token = jwt.sign(
-                            { 
-                                userId: user._id,
-                                userEmail: user.email,
-                            },
-                            "RANDOM-TOKEN",
-                            {expiresIn : "30 days"}
-                        )
+const loginUser = async (req,res) => {
+    try {
+        const { email, password } = req.body
+        const user = await User.findOne({email : email})
 
-                        res.status(200).send({
-                            message : "User Logged in successfully",
-                            user : {
-                                id : user._id,
-                                name : user.name
-                            },
-                            token
-                        })
-                    }
-                }
-            )
-        }
-    ).catch(
-        err => {
+        const userPassword = await bcrypt.compare(password, user.password)
+
+        if(userPassword === false) {
             res.status(404).send({
-                message : "User was not found",
+                message : "Password Does Not Match",
                 err
             })
-            console.log(err)
         }
-    )
+
+        const token = generateToken(user._id)
+            res.status(200).send({
+            message : "User Logged in successfully",
+            user : {
+                id : user._id,
+                name : user.name
+            },
+            token
+        })
+    }
+    catch(error) {
+        res.status(500).send({
+            message : "User Login Unsuccessful",
+            error: error.message
+        })
+    }
 }
 
 module.exports = {

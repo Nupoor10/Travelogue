@@ -10,6 +10,7 @@ const noteRoutes = require('./routes/noteRoutes')
 const app = express();
 app.use(express.json());
 app.use(cors())
+dotenv.config()
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -25,7 +26,6 @@ app.use((req, res, next) => {
   });
 
 
-dotenv.config()
 connectDB()
 
 app.get("/", (req,res) => {

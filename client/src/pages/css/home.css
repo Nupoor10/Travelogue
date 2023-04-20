@@ -1,5 +1,5 @@
 .Home{
-    margin: 30px;
+    /* margin: 30px; */
     display: flex;
     flex-flow: column;
     border-top: 5px solid white;
@@ -22,6 +22,22 @@
     row-gap: 50px;
     column-gap: 50px;
     height: fit-content;
+    margin: 40px;
+  }
+
+  .home-header-container {
+    display: flex;
+    flex-flow: column;
+    /* align-items: center; */
+    justify-content: center;
+    background-image: url("https://i.ibb.co/qnRQCrc/notepad-g2cc92b322-1280.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    width: 100%;
+    height: 550px;
+    color: white;
   }
 
   .Home-header {
@@ -40,4 +56,24 @@
 
   .icon {
     cursor: pointer;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    background-color: rgb(233, 233, 233);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 1.5em;
+  }
+  
+  .search input {
+    border: none;
+    background-color: rgb(233, 233, 233);
+    width: 1300px;
+    height: 40px;
+  }
+  
+  .search input:focus {
+    outline: none;
   }

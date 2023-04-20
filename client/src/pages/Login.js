@@ -10,25 +10,22 @@ function Login() {
   const navigate = useNavigate()
   const { setUser } = useContext(UserContext)
 
-	function LoginUser(e) {
-		e.preventDefault()
-		axios.post("http://localhost:6060/api/login", {
+	async function LoginUser(e) {
+		try {
+			e.preventDefault()
+			const response = await axios.post("http://localhost:6060/api/login", {
 			email,
 			password
-		}).then(
-			res => {
-				const info = res.data.user
-				console.log(info)
-				setUser(info)
-				localStorage.setItem("userData", JSON.stringify(info))
-				alert("Successfully Logged In")
-				navigate("/home")
-			}
-		).catch(
-            err => {
-                console.log(err)
-            }
-        )
+			})
+			const userData = await response.data.user
+			setUser(userData)
+			localStorage.setItem("userData", JSON.stringify(userData))
+			alert("Successfully Logged In")
+			navigate("/home")
+		}
+		catch(error) {
+			console.log(error)
+		}
 	}
 
   return (
@@ -54,7 +51,7 @@ function Login() {
 							placeholder="Password"
 						/>
 						<br />
-						<button type="submit" className="login-btn" onClick={LoginUser}>Login</button>
+						<button type="submit" className="login__btn" onClick={LoginUser}>Login</button>
 						<h3>Not Registered Yet? <Link to='/register'>Click Here</Link> to Register</h3>
 					</form>
 				</div>

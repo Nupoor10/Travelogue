@@ -11,33 +11,26 @@ function NewNote() {
     const [color, setColor] = useState('peachpuff')
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
-    const id = user ? user.id : null;
-    const userid = id.toString()
+    const id = user ? user.id.toString() : null;
 
-    function handleNoteSubmit(e) {
-        e.preventDefault()
-        if(userid) {
-            axios.post("http://localhost:6060/api/notes/create", {
-			title,
-			places,
-            content,
-            user : userid
-		}).then(
-			res => {
-				if(!res) {
-                    alert("Note was not created")
-                }
-                else{
-                    alert("Note Added Successfully")
-                    navigate("/home")
-                }
-			}
-		).catch(
-            err => {
-                console.log(err)
-            }
-        )
-        }      
+    async function handleNoteSubmit(e) {
+        try {
+            if(id) {
+                const response = await axios.post("http://localhost:6060/api/notes/create", {
+                title,
+                places,
+                content,
+                color,
+                user : id
+                })
+                
+                alert("Note Added Successfully")
+                navigate("/home")
+            }    
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 
   return (

@@ -8,18 +8,21 @@ const createNote = async (req,res) => {
             title : req.body.title,
             places : req.body.places,
             content : req.body.content,
+            color : req.body.color,
             user : req.body.user
         })
     
         const savedNote = await note.save();
-        res.status(200).send({
-        message: "Note saved successfully",
-        result: savedNote,
-        });
+        if(savedNote) {
+            res.status(200).send({
+                message: "Note saved successfully",
+                result: savedNote,
+                });
+        }
     }
     catch(error) {
         res.status(500).send({
-            message: "Error creating note",
+            message: "Note Creation Unsuccessful",
             error: error.message,
           });
     }
@@ -36,7 +39,7 @@ const getAllNotes = async (req,res) => {
     }
     catch(error) {
         res.status(500).send({
-            message: "Error retrieving notes",
+            message: "Notes Retreiving Unsuccessful",
             error: error.message,
           });
     }
@@ -59,7 +62,7 @@ const getSingleNote = async (req, res) => {
       }
     } catch (error) {
       res.status(500).send({
-        message: "Error retrieving note",
+        message: "Single Note Retreiving Unsuccessful",
         error: error.message,
       });
     }
@@ -90,7 +93,7 @@ const updateNote = async (req,res) => {
     }
     catch(error) {
         res.status(500).send({
-            message : "Error Updating Notes",
+            message : "Note Updating Unsuccessful",
             error : error.message
         })
     }
@@ -115,7 +118,7 @@ const deleteNote = async (req,res) => {
     }
     catch(error) {
         res.status(500).send({
-            message : "Error Deleting Notes",
+            message : "Note Deletion Unsuccessful",
             error : error.message
         })
     }

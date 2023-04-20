@@ -10,16 +10,22 @@ function Register() {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const RegisterUser = async() =>{
+  async function RegisterUser(e){
 	try{
-		const response = await axios.post("http://localhost:6060/api/register", {
+		e.preventDefault()
+		console.log(name, email, password)
+		await axios.post("http://localhost:6060/api/register", {
 			name,
 			email,
 			password
 		})
-		console.log(response.data)
-		alert("Successfully registered")
-		navigate('/login')
+		// const userCreated = await response.data
+		// if(userCreated) {
+			alert("Successfully Registered")
+			console.log("Successfully Registered")
+			navigate('/')
+		// }
+		
 	}
 	catch(error) {
 		console.log(error)
